@@ -2,10 +2,16 @@
 - hosts: localhost
   connection: local
   tasks:
-    - name: pre-install enviroment
+    - name: pre-install environment
       ansible.builtin.shell: |
         sudo apt-get install unzip -y
-        sudo mkdir /mule
+        if [ -d "/mule" ]
+        then
+          echo "Error: Directory /mule exists"
+        else
+          echo "Directory /mule does not exist"
+          sudo mkdir /mule
+        fi
     - name: install OpenJDK
       ansible.builtin.shell: |
         sudo apt-get install openjdk-8-jre -y
@@ -15,7 +21,7 @@
           java -version
           exit 0
         else
-          echo "java install error"
+          echo "Error: Java install error"
           exit 1
         fi
       args:
