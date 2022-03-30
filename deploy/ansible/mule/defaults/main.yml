@@ -1,4 +1,4 @@
 # wrapper.conf default
-java_maxmemory: 512m
-java_initmemory: 512m
+java_maxmemory: 256m
+java_initmemory: 256m
 anypoint_key: keyhere....
