@@ -1,0 +1,15 @@
+- name: install Mule init.d file
+  template:
+    src: templates/init.d/mule
+    dest: /etc/init.d/mule
+    owner: root
+    group: root
+    mode: 0755
+  notify:
+  - restart Mule service
+
+- name: ensure Mule service started
+  service:
+    name: mule
+    state: started
+    enabled: yes

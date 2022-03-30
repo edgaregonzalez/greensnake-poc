@@ -1,0 +1,61 @@
+- name: add openjdk ppa
+  apt_repository:
+    repo: 'ppa:openjdk-r/ppa'
+    update_cache: yes
+
+- name: ensure java installed
+  package:
+    name: openjdk-8-jdk
+    state: present
+
+- name: make sure unzip package installed
+  package:
+    name: unzip
+    state: latest
+
+- name: create 'mule' user
+  user:
+    name: mule
+    comment: "Mule Server Standalone"
+
+- name: download Mule
+  get_url:
+    url: https://edgaregonzalez.s3.amazonaws.com/mule-ee-distribution-standalone-4.4.0.zip
+    dest: /tmp
+    checksum: sha256:22e7d49a38b59254d36b6daf35685541486d173c6d45705229d5a7b214ae9942
+
+- name: copy runtime from controller machine
+  unarchive:
+    copy: yes
+    src: /tmp/mule-ee-distribution-standalone-4.4.0.zip
+    dest: /opt
+    owner: mule
+    group: mule
+    creates: /opt/mule-enterprise-standalone-4.4.0/ansible.done
+
+- name: creates ansible.done file for mule runtime
+  copy:
+    content: ""
+    dest: /opt/mule-enterprise-standalone-4.4.0/ansible.done
+    force: no
+    group: root
+    owner: root
+    mode: 0644
+
+- name: create symlink to current Mule version
+  file:
+    src: /opt/mule-enterprise-standalone-4.4.0
+    dest: /opt/mule
+    owner: root
+    group: root
+    state: link
+
+- name: set wrapper.conf template
+  template:
+    src: wrapper.conf.j2
+    dest: /opt/mule/wrapper.conf
+    owner: mule
+    group: mule
+    mode: 0640
+  notify:
+  - restart Mule service

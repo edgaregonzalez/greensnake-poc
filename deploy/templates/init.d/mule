@@ -1,0 +1,5 @@
+MULE_USER=mule
+ADDITIONAL_PARAM=""
+
+su --login --command "/opt/mule/bin/mule $1 ${ADDITIONAL_PARAM}" ${MULE_USER}
+return $?
