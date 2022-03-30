@@ -26,8 +26,8 @@
     - name: unzip mule installer
       ansible.builtin.unarchive:
         src: /tmp/mule-ee-distribution-standalone-4.4.0.zip
-        dest: /tmp
+        dest: /$home
         remote_src: yes
     - name: mule pre-install steps
-      ansible.builtin.shell: export MULE_HOME=/tmp/mule-enterprise-standalone-4.1.5
+      ansible.builtin.shell: export MULE_HOME=/$home/mule-enterprise-standalone-4.4.0
     
