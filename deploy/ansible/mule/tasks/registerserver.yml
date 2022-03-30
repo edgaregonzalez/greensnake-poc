@@ -1,15 +1,6 @@
     - name: register server to anypointconnect
       ansible.builtin.shell: |
-        SERVERNAME=$(hostname)
-        sudo /opt/mule/bin/amc_setup -H {{ anypoint_key }} $SERVERNAME
-        status=$?
-        if test $status -eq 0
-        then
-          echo "Server registered to anypointconnect"
-          exit 0
-        else
-          echo "Error: Server registration error"
-          exit 1
-        fi
+        mulehost=$(hostname)
+        sudo /opt/mule/bin/amc_setup -H {{ anypoint_key }} $mulehost
       args:
         executable: /bin/bash
