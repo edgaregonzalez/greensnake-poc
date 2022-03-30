@@ -5,7 +5,7 @@
     - name: pre-install enviroment
       ansible.builtin.shell: |
         sudo apt-get install unzip -y
-        mkdir /mule
+        sudo mkdir /mule
     - name: install OpenJDK
       ansible.builtin.shell: |
         sudo apt-get install openjdk-8-jre -y
