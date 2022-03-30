@@ -19,7 +19,7 @@
     dest: /tmp
     checksum: sha256:22e7d49a38b59254d36b6daf35685541486d173c6d45705229d5a7b214ae9942
 
-- name: copy runtime from controller machine
+- name: copy runtime files
   unarchive:
     copy: yes
     src: /tmp/mule-ee-distribution-standalone-4.4.0.zip
