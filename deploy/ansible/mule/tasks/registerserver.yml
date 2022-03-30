@@ -2,5 +2,3 @@
       ansible.builtin.shell: |
         mulehost=$(hostname)
         sudo /opt/mule/bin/amc_setup -H {{ anypoint_key }} $mulehost
-      args:
-        executable: /bin/bash
