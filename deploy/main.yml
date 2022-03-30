@@ -25,11 +25,9 @@
         url: https://edgaregonzalez.s3.amazonaws.com/mule-ee-distribution-standalone-4.4.0.zip
         dest: /tmp
         checksum: sha256:22e7d49a38b59254d36b6daf35685541486d173c6d45705229d5a7b214ae9942
-    - name: unzip mule installer
-      ansible.builtin.unarchive:
-        src: /tmp/mule-ee-distribution-standalone-4.4.0.zip
-        dest: /mule
-        remote_src: yes
-    - name: mule pre-install steps
+    - name: move mule files to a specific directory
+      ansible.builtin.shell: |
+        sudo unzip /tmp/mule-ee-distribution-standalone-4.4.0.zip -d /mule/
+    - name: set MULE_HOME variable
       ansible.builtin.shell: export MULE_HOME=/mule/mule-enterprise-standalone-4.4.0
     
