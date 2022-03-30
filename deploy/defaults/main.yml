@@ -1,0 +1,3 @@
+# wrapper.conf default
+java_maxmemory: 512m
+java_initmemory: 512m
