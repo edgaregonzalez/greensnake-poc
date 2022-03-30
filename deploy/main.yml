@@ -2,9 +2,10 @@
 - hosts: localhost
   connection: local
   tasks:
-    - name: install tools
+    - name: pre-install enviroment
       ansible.builtin.shell: |
         sudo apt-get install unzip -y
+        mkdir /mule
     - name: install OpenJDK
       ansible.builtin.shell: |
         sudo apt-get install openjdk-8-jre -y
@@ -27,8 +28,8 @@
     - name: unzip mule installer
       ansible.builtin.unarchive:
         src: /tmp/mule-ee-distribution-standalone-4.4.0.zip
-        dest: /$home
+        dest: /mule
         remote_src: yes
     - name: mule pre-install steps
-      ansible.builtin.shell: export MULE_HOME=/$home/mule-enterprise-standalone-4.4.0
+      ansible.builtin.shell: export MULE_HOME=/mule/mule-enterprise-standalone-4.4.0
     
