@@ -1,4 +1,7 @@
 - hosts: localhost
   connection: local
-- import_tasks: runtime.yml
-- import_tasks: service.yml
+  tasks:
+  - name: setup runtime
+    import_tasks: runtime.yml
+  - name: setup service
+    import_tasks: service.yml
