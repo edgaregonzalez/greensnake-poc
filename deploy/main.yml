@@ -1,13 +1,22 @@
 #Install jdk
 - hosts: webservers
   tasks:
-    - name: Get the jdk installer
+    - name: install OpenJDK
+      ansible.builtin.shell: |
+        sudo apt-get install openjdk-8-jre -y
+        status=$?
+        if test $status -eq 0
+        then
+          java -version
+          exit 0
+        else
+          echo "java install error"
+          exit 1
+        fi
+      args:
+        executable: /bin/bash
+    - name: download Mule
       get_url:
-        url: https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u322-b06/OpenJDK8U-jdk_x64_linux_hotspot_8u322b06.tar.gz
+        url: https://edgaregonzalez.s3.amazonaws.com/mule-ee-distribution-standalone-4.4.0.zip
         dest: /tmp
-        validate_certs: no
-    - name: Extract OpenJDK
-      unarchive:
-        src: /tmp/OpenJDK8U-jdk_x64_linux_hotspot_8u322b06.tar.gz
-        dest: /tmp/OpenJDK8U
-        remote_src: yes
+        checksum: sha256:22e7d49a38b59254d36b6daf35685541486d173c6d45705229d5a7b214ae9942
