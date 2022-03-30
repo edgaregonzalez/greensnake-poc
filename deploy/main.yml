@@ -1,5 +1,6 @@
 #Install jdk
-- hosts: webservers
+- hosts: localhost
+  connection: local
   tasks:
     - name: install tools
       ansible.builtin.shell: |
