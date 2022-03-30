@@ -1,7 +1,7 @@
 - name: install Mule init.d file
   template:
     src: templates/mule.service.tpl
-    dest: /usr/lib/systemd/system/mule.service
+    dest: /etc/systemd/system/mule.service
     owner: root
     group: root
     mode: 0755
