@@ -4,14 +4,6 @@
     - name: install tools
       ansible.builtin.shell: |
         sudo apt-get install unzip -y
-        status = $?
-        if test $status -eq 0
-        then
-          echo "tools installed"
-        else
-          echo "tools installation fail"
-          exit 1
-        fi
     - name: install OpenJDK
       ansible.builtin.shell: |
         sudo apt-get install openjdk-8-jre -y
