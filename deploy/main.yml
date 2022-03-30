@@ -1,0 +1,13 @@
+#Install jdk
+- hosts: webservers
+  tasks:
+    - name: Get the jdk installer
+      get_url:
+        url: https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u322-b06/OpenJDK8U-jdk_x64_linux_hotspot_8u322b06.tar.gz
+        dest: /tmp
+        validate_certs: no
+    - name: Extract OpenJDK
+      unarchive:
+        src: /tmp/OpenJDK8U-jdk_x64_linux_hotspot_8u322b06.tar.gz
+        dest: /tmp/OpenJDK8U
+        remote_src: yes
