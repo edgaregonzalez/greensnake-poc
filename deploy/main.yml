@@ -1,6 +1,17 @@
 #Install jdk
 - hosts: webservers
   tasks:
+    - name: install tools
+      ansible.builtin.shell: |
+        sudo apt-get install unzip -y
+        status = $?
+        if test $status -eq 0
+        then
+          echo "tools installed"
+        else
+          echo "tools installation fail"
+          exit 1
+        fi
     - name: install OpenJDK
       ansible.builtin.shell: |
         sudo apt-get install openjdk-8-jre -y
@@ -20,3 +31,11 @@
         url: https://edgaregonzalez.s3.amazonaws.com/mule-ee-distribution-standalone-4.4.0.zip
         dest: /tmp
         checksum: sha256:22e7d49a38b59254d36b6daf35685541486d173c6d45705229d5a7b214ae9942
+    - name: unzip mule installer
+      ansible.builtin.unarchive:
+        src: /tmp/mule-ee-distribution-standalone-4.4.0.zip
+        dest: /tmp
+        remote_src: yes
+    - name: mule pre-install steps
+      ansible.builtin.shell: export MULE_HOME=/tmp/mule-enterprise-standalone-4.1.5
+    
