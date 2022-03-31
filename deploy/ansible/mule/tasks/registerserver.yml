@@ -1,0 +1,6 @@
+    - name: register server to anypointconnect
+      shell: |
+        mulehost=$(hostname)
+        /opt/mule/bin/amc_setup -H {{ anypoint_key }} $mulehost
+      args:
+        executable: /bin/bash
