@@ -56,5 +56,4 @@
     mode: 0640
 
 - name: run Mule
-  shell: /opt/mule/bin/mule start
-  become_user: mule
+  shell: sudo /opt/mule/bin/mule start
