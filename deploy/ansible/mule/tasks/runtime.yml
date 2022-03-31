@@ -21,7 +21,6 @@
 
 - name: copy runtime files
   unarchive:
-    copy: yes
     src: /tmp/mule-ee-distribution-standalone-4.4.0.zip
     dest: /opt
     owner: mule
