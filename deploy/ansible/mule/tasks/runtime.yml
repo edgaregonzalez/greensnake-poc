@@ -54,6 +54,3 @@
     owner: mule
     group: mule
     mode: 0640
-
-- name: run Mule
-  shell: sudo /opt/mule/bin/mule start

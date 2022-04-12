@@ -1,0 +1,3 @@
+- hosts: webservers
+- name: run Mule
+  shell: sudo /opt/mule/bin/mule stop
