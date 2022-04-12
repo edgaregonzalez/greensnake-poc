@@ -1,6 +1,5 @@
 - name: Stop mule server
   hosts: webservers
-  remote_user: mule
   tasks:
     - name: stop Mule
       shell: sudo /opt/mule/bin/mule stop

@@ -1,6 +1,5 @@
 - name: Start mule server
   hosts: webservers
-  remote_user: mule
   tasks:
     - name: run Mule
       shell: sudo /opt/mule/bin/mule start
